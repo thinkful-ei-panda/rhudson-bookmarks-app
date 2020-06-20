@@ -1,37 +1,44 @@
 const bookmarks = [];
-let adding =  false;
+let adding = false;
 let edit = false;
 // let editBookmark;
 let error = null;
 let filter = 0;
 let expand = false;
 
-const findById = function (bookmarkID) {
-  return this.items.find(currentBkmk => currentBkmk.id === bookmarkID);
+const findById = function (id) {
+  return this.bookmarks.find((bookmark) => bookmark.id === id);
 };
 
-const addBookmark = function (bkmk) {
-  this.bookmarks.push(bkmk);
+const addBookmark = function (bookmark) {
+  this.bookmarks.push(bookmark);
 };
 
-const setExpand = function() {
-  this.bookmarks.forEach(bkmk => {
-    bkmk['expand'] = false;
-    this.bookmarks.push(bkmk);
+const loadBookmarks = function (bookmarks) {
+  this.bookmarks = [...bookmarks];
+};
+
+const setExpand = function () {
+  this.bookmarks = this.bookmarks.map((bookmark) => {
+    bookmark.expand = false;
+    return bookmark;
   });
 };
 
-const editBookmark = function (bookmarkID, editedBkmk) {
-  const currentBkmk = this.findById(bookmarkID);
-  Object.assign(currentBkmk, editedBkmk);
+const editBookmark = function (id, editedBookmark) {
+  this.bookmarks = this.bookmarks.map((bookmark) =>
+    bookmark.id === id ? Object.assign(bookmark, editedBookmark) : bookmark
+  );
 };
 
 const toggleProperty = function (object, property) {
-  object[property] = !object[property];
+  return (object[property] = !object[property]);
 };
 
-const deleteBookmark = function (bookmarkID) {
-  this.bookmarks = this.bookmarks.filter(currentBkmk => currentBkmk.id !== bookmarkID);
+const deleteBookmark = function (id) {
+  this.bookmarks = this.bookmarks.filter(
+    (currentBkmk) => currentBkmk.id !== id
+  );
 };
 
 const setError = function (error) {
@@ -49,8 +56,8 @@ export default {
   findById,
   addBookmark,
   setExpand,
-  editBookmark,
   toggleProperty,
   deleteBookmark,
-  setError
+  setError,
+  loadBookmarks,
 };
