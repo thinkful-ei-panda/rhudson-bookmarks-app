@@ -1,30 +1,28 @@
-import $ from 'jquery';
-import state from './state';
+import $ from "jquery";
+import state from "./state";
 
-
-const mainHTMLGenerator = function(bookmarks) {
+const mainHTMLGenerator = function (bookmarks) {
   if (state.adding) {
-    $('#add-btn').text('Cancel');
+    $("#add-btn").text("Cancel");
     return generateAddHTML();
   } else if (state.edit) {
-    $('#add-btn').text('Add a Bookmark');
+    $("#add-btn").text("Add a Bookmark");
     return generateEditHTML();
   } else {
-    $('#add-btn').text('Add a Bookmark');
+    $("#add-btn").text("Add a Bookmark");
     return generateBookmarkList(bookmarks);
   }
 };
 
-
-const generateAddHTML = function() {
+const generateAddHTML = function () {
   // let errorHTML = '';
   // if(state.error) {
-  //   errorHTML = 
+  //   errorHTML =
   //   `<div class="error item">
   //     <p>*Something's not quite right: ${state.error}</p>
-  //   </div>`;} 
+  //   </div>`;}
 
-  $('main').html(
+  $("main").html(
     `<section id='add-section' class='bookmark-group'>
       <form id="add-bookmark-form" class="form group">
         <h3>Add <i class="fas fa-bookmark"></i></h3>
@@ -55,16 +53,15 @@ const generateAddHTML = function() {
   );
 };
 
-
-const generateEditHTML = function() {
-  let errorHTML = '';
-  if(state.error) {
-    errorHTML = 
-    `<div class="error item">
+const generateEditHTML = function () {
+  let errorHTML = "";
+  if (state.error) {
+    errorHTML = `<div class="error item">
       <p>*Something's not quite right: ${state.error}</p>
-    </div>`} 
+    </div>`;
+  }
 
-  $('main').html(
+  $("main").html(
     `<section id="edit-section" class="group bookmark-group">
       <div class="item">
           <h2 class="bookmark-el" id="${state.editBookmark.id}">${state.editBookmark.title}</h2>
@@ -93,15 +90,16 @@ const generateEditHTML = function() {
   );
 };
 
-
-const generateBookmarkList = function(bookmarks) {
-  const bookmarksListElements = bookmarks.map(bookmark => {
+const generateBookmarkList = function (bookmarks) {
+  const bookmarksListElements = bookmarks.map((bookmark) => {
     if (bookmark.expand) {
-      $('main').html(
+      $("main").html(
         `<section id="expand-section" class="group bookmark-group">
           <div class="item">
               <h2 class="bookmark-title" id="${bookmarks.id}">
-                <img src="${bookmarks.url}/favicon.ico" id="favicon"> ${bookmarks.title}
+                <img src="${bookmarks.url}/favicon.ico" id="favicon"> ${
+          bookmarks.title
+        }
               </h2>
               <div class="btn-wrapper">
                 <button id="edit-btn" class="btn edit"><i class="fas fa-edit"></i>
@@ -113,18 +111,24 @@ const generateBookmarkList = function(bookmarks) {
               </div>
           </div>
           <div class="item">
-              <p class="bookmark-rating" id="${bookmarks.id}">${generateRatings(bookmarks.rating)}</p>
+              <p class="bookmark-rating" id="${bookmarks.id}">${generateRatings(
+          bookmarks.rating
+        )}</p>
           </div>
           <div class="item">
-              <p class="bookmark-url"><a href="${bookmarks.url}" id="${bookmarks.id}">${bookmarks.url}</a></p>
+              <p class="bookmark-url"><a href="${bookmarks.url}" id="${
+          bookmarks.id
+        }">${bookmarks.url}</a></p>
           </div>
           <div class="item">
-              <p class="bookmark-desc" id="${bookmarks.id}">${bookmarks.desc}</p>
+              <p class="bookmark-desc" id="${bookmarks.id}">${
+          bookmarks.desc
+        }</p>
           </div>
         </section>`
       );
     } else {
-      $('main').html(
+      $("main").html(
         `<section id="bookmark-section" class="group bookmark-group">
           <div class="btn-wrapper item">
               <h2 class="bookmark-el" id="${bookmarks.id}">
@@ -155,16 +159,10 @@ const generateBookmarkList = function(bookmarks) {
   });
   return `
     <div class="bookmark-wrapper">
-        ${bookmarksListElements.join('')}
+        ${bookmarksListElements.join("")}
     </div>
   `;
 };
-
-
-
-
-
-
 
 // const generateBookmarkListsString = function (shoppingList) {
 //   const items = shoppingList.map((item) => generateListElement(item));
@@ -180,10 +178,9 @@ const generateBookmarkList = function(bookmarks) {
 //     `;
 // };
 
-
 export default {
   mainHTMLGenerator,
   generateBookmarkList,
   generateAddHTML,
-  generateEditHTML
+  generateEditHTML,
 };

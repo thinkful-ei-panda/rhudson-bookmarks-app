@@ -2,14 +2,14 @@
 import $ from "jquery";
 import state from "./state";
 import api from "./api";
-import mainHTMLGenerator from "./generate";
+import generate from "./generate";
 
 const render = function () {
   let bookmarks =
     state.filter > 0
       ? state.bookmarks.filter((bookmark) => bookmark.rating >= state.filter)
       : state.bookmarks;
-  $("main").html(mainHTMLGenerator(bookmarks));
+  $("main").html(generate.mainHTMLGenerator(bookmarks));
 };
 
 // const handleCloseError = function () {

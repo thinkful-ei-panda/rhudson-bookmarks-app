@@ -1,5 +1,6 @@
 import $ from "jquery";
 import api from "./api.js";
+import "../styles/index.css";
 import state from "./state.js";
 import bookmarkList from "./bookmark-list.js";
 
