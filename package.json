@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/beccahudson/bookmark-app/issues"
   },
-  "homepage": "https://github.com/beccahudson/bookmark-app#readme"
+  "homepage": "https://github.com/beccahudson/bookmark-app#readme",
+  "dependencies": {
+    "jquery": "^3.5.1"
+  }
 }
