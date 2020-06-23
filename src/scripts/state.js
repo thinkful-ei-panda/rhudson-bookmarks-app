@@ -7,6 +7,7 @@ let filter = 0;
 let expand = false;
 
 const findById = function (id) {
+  console.log('inside state.js' + id)
   return this.bookmarks.find((bookmark) => bookmark.id === id);
 };
 
@@ -37,7 +38,7 @@ const toggleProperty = function (object, property) {
 
 const deleteBookmark = function (id) {
   this.bookmarks = this.bookmarks.filter(
-    (currentBkmk) => currentBkmk.id !== id
+    (currentBookmark) => currentBookmark.id !== id
   );
 };
 
@@ -49,14 +50,14 @@ export default {
   bookmarks,
   adding,
   edit,
-  editBookmark,
   error,
   filter,
   expand,
   findById,
   addBookmark,
-  setExpand,
   toggleProperty,
+  setExpand,
+  editBookmark,
   deleteBookmark,
   setError,
   loadBookmarks,

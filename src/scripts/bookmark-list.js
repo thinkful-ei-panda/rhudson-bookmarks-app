@@ -4,12 +4,30 @@ import state from "./state";
 import api from "./api";
 import generate from "./generate";
 
+const renderError = function () {
+  if (state.error) {
+    const el = generateError(state.error);
+    $(".error-container").html(el);
+  } else {
+    $(".error-container").empty();
+  }
+};
+
+const handleCloseError = function () {
+  $(".error-container").on("click", "#cancel-error", () => {
+    state.setError(null);
+    renderError();
+  });
+};
+
 const render = function () {
+  console.log(`render started`);
   let bookmarks =
-    state.filter > 0
-      ? state.bookmarks.filter((bookmark) => bookmark.rating >= state.filter)
-      : state.bookmarks;
+    state.filter > 0 ?
+    state.bookmarks.filter((bookmark) => bookmark.rating >= state.filter) :
+    state.bookmarks;
   $("main").html(generate.mainHTMLGenerator(bookmarks));
+  console.log(`render ran`);
 };
 
 // const handleCloseError = function () {
@@ -22,55 +40,58 @@ const render = function () {
 /********** EVENT HANDLER FUNCTIONS **********/
 
 // These functions handle events (submit, click, etc)
-const generateRatings = function (value) {
-  let bookmarkRating = "";
-  for (let i = 0; i < value; i++) {
-    bookmarkRating += '<img src="images/star.jpg" alt="star">';
-  }
-  return bookmarkRating;
-};
+
 
 const handleAddBtn = function () {
+  console.log(`handleAddBtn started`);
   $("#add-btn").click((event) => {
     state.toggleProperty(state, "adding");
     state.error = null;
     render();
+    console.log(`handleAddBtn ran`);
   });
-  console.log(`handleAddBtn ran`);
 };
 
 const submitAddForm = function () {
-  $("#add-bookmark-form").submit((event) => {
+  console.log(`submitAddForm started`);
+  $("main").submit((event) => {
     event.preventDefault();
 
-    $.fn.extend({
-      serializeJSON: function () {
-        const formData = new FormData(this[0]);
-        const jsFormData = {};
-        formData.forEach((val, name) => (jsFormData[name] = val));
-        return JSON.stringify(jsFormData);
-      },
-    });
-    const jsonStringifiedFormData = $("#add-bookmark-form").serializeJSON();
+    // $.fn.extend({
+    //   serializeJSON: function () {
+    //     const formData = new FormData(this[0]);
+    //     const jsFormData = {};
+    //     formData.forEach((val, name) => (jsFormData[name] = val));
+    //     return JSON.stringify(jsFormData);
+    //   },
+    // });
+    // const jsonStringifiedFormData = $("#add-bookmark-form").serializeJSON();
 
-    api
-      .POST(jsonStringifiedFormData)
+    const newBookmark = {};
+    newBookmark.title = $("#title").val();
+    newBookmark.url = $("#url").val();
+    newBookmark.desc = $("#description").val();
+    newBookmark.rating = $("#rating :selected").val();
+
+    api.POST(newBookmark)
       .then((data) => {
         data["expand"] = false;
         data["edit"] = false;
         state.bookmarks.push(data);
         state.toggleProperty(state, "adding");
         render();
+        console.log(state.bookmarks);
       })
       .catch((error) => {
         state.error = error.message;
-        render();
+        renderError();
+        console.log(`submitAddForm ERROR`);
       });
   });
-  console.log(`submitAddForm ran`);
 };
 
 const handleEditBtn = function () {
+  console.log(`handleEditBtn started`);
   $("#edit-btn").click((event) => {
     const bookmarkID = $(event.currentTarget)
       .closest(".bookmark-group")
@@ -81,11 +102,12 @@ const handleEditBtn = function () {
     state.editBookmark = currentBookmark;
     state.error = null;
     render();
+    console.log(`handleEditBtn ran`);
   });
-  console.log(`handleEditBtn ran`);
 };
 
 const submitEditForm = function () {
+  console.log(`submitEditForm started`);
   $("#edit-bookmark-form").submit((event) => {
     event.preventDefault();
 
@@ -109,54 +131,60 @@ const submitEditForm = function () {
     const jsonStringifiedFormData = JSON.stringify(jsFormData);
 
     api
-      .patch(jsonStringifiedFormData, bookmarkID)
+      .PATCH(jsonStringifiedFormData, bookmarkID)
       .then(() => {
         state.toggleProperty(state, "edit");
         state.error = null;
         render();
+        console.log(`submitEditForm PATCH`);
       })
       .catch((error) => {
         state.error = error.message;
         render();
+        console.log(`submitEditForm ERROR`);
       });
   });
-  console.log(`submitEditForm ran`);
 };
 
 const handleDeleteBtn = function () {
-  $("#delete-btn").click((event) => {
+  console.log(`handleDeleteBtn started`);
+  $('body').on('click', '#delete-btn', event => {
     const bookmarkID = $(event.currentTarget)
       .closest(".bookmark-group")
-      .find("bookmark-el")
-      .attr("id");
-    const currentBookmark = state.findByID(bookmarkID);
-    state.deleteBookmark(currentBookmark);
-    api.deleteAPI(bookmarkID);
-    render();
+      .data('item-id');
+    console.log(bookmarkID)
+    const currentBookmark = state.findById(bookmarkID);
+    console.log('this is bookmark' + currentBookmark.id);
+    api.deleteAPI(bookmarkID)
+      .then(() => {
+        state.deleteBookmark(currentBookmark.id);
+        render();
+      })
+    // console.log(`handleDeleteBtn ran`);
   });
-  console.log(`handleDeleteBtn ran`);
 };
 
 const expandCollapseBtn = function () {
-  $("#exp-col-btn").click((event) => {
+  console.log(`expandCollapseBtn started`);
+  $("body").on('click', '#edit-btn', event => {
     const bookmarkID = $(event.currentTarget)
       .closest(".bookmark-group")
-      .find(".bookmark-el")
-      .attr("id");
-    const currentBookmark = state.findByID(bookmarkID);
+      .data('item-id');
+    const currentBookmark = state.findById(bookmarkID);
     state.toggleProperty(currentBookmark, "expand");
     render();
+    console.log(`expandCollapseBtn ran`);
   });
-  console.log(`expandCollapseBtn ran`);
 };
 
 const handleFilterSelect = function () {
+  console.log(`handleFilterSelect started`);
   $("#filter-select").change((event) => {
     state.filter = $("option:selected").val();
     console.log(state.filter);
     render();
+    console.log(`handleFilterSelect ran`);
   });
-  console.log(`handleFilterSelect ran`);
 };
 
 // function handleCreateBtn() {
@@ -171,7 +199,8 @@ const handleFilterSelect = function () {
 // }
 
 const bindEventListeners = function () {
-  generateRatings();
+  renderError();
+  handleCloseError();
   handleAddBtn();
   submitAddForm();
   handleEditBtn();
