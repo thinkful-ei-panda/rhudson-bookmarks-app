@@ -6,7 +6,7 @@ const listAPIFetch = function (...args) {
     .then((response) => {
       if (!response.ok) {
         error = {
-          code: response.status
+          code: response.status,
         };
         if (!response.headers.get("content-type").includes("json")) {
           error.message = response.statusText;
@@ -36,7 +36,7 @@ const POST = function (jsonStringifiedFormData) {
     headers: {
       "Content-Type": "application/json",
     },
-    body: newData
+    body: newData,
   });
 };
 
@@ -46,20 +46,9 @@ const deleteAPI = function (bookmarkID) {
   });
 };
 
-const PATCH = function (jsonStringifiedFormData, bookmarkID) {
-  return listAPIFetch(`${BASE_URL}${bookmarkID}`, {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: jsonStringifiedFormData,
-  });
-};
-
 export default {
   listAPIFetch,
   GET,
   POST,
   deleteAPI,
-  PATCH,
 };
