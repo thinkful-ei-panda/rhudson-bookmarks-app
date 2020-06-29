@@ -52,8 +52,9 @@ const submitAddForm = function () {
     newBookmark.title = $("#title").val();
     newBookmark.url = $("#url").val();
     newBookmark.desc = $("#description").val();
-    newBookmark.rating = $("#rating :selected").val();
+    newBookmark.rating = $("input[name='rating3']:checked").val();
 
+    console.log(`bookmark rating: ${newBookmark.rating}`);
     api
       .POST(newBookmark)
       .then((data) => {
@@ -110,6 +111,13 @@ const handleFilterSelect = function () {
     render();
     console.log(`handleFilterSelect ran`);
   });
+};
+
+const starRating = function () {
+  console.log(`starRating started`);
+  $;
+
+  console.log(`starRating ran`);
 };
 
 const bindEventListeners = function () {

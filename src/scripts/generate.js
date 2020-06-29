@@ -13,48 +13,62 @@ const mainHTMLGenerator = function (bookmarks) {
 };
 
 const getRatings = function (value) {
-  console.log(`getRatings started`);
+  console.log("getRatings started");
   let bookmarkRating = "";
   for (let i = 0; i < value; i++) {
     bookmarkRating += '<i class="fas fa-star"></i>';
   }
-  console.log(`return bookRating`);
+  console.log("return bookRating");
   return bookmarkRating;
 };
 
 const generateAddHTML = function () {
   return `<section id='add-section' class='bookmark-group'>
       <form id="add-bookmark-form" class="form group">
-        <h3>Add <i class="fas fa-bookmark"></i></h3>
+        <h3 class="item">Add <i class="fas fa-bookmark"></i></h3>
         <div class="error-container"></div>
+        <div class="input-group item">
+          <label for="title">
+            <input type="text" name="bookmark-title" id="title" value="" placeholder="Title" size="30" required>
+          </label>
 
-        <label for="title">
-          <input type="text" name="bookmark-title" id="title" value="" placeholder="Bookmark Title" required>
+          <label for="url">
+            <input type="url" name="bookmark-url" id="url" value="" placeholder="https://www.example.com" size="30" required>
+          </label>
+        </div>
+        <label for="description" class="item">
+          <input type="text" name="bookmark-description" id="description" value="" placeholder="" size="40">
         </label>
 
-        <label for="url">
-          <input type="url" name="bookmark-url" id="url" value="" placeholder="https://www.example.com" required>
-        </label>
+        <div id="rating" class="rating-group item" name="rating">
+          <input disabled checked class="rating__input rating__input--none" name="rating3" id="rating3-none" value="0" type="radio">
 
-        <label for="description">
-          <input type="text" name="bookmark-description" id="description" value="" placeholder="">
-        </label>
+          <label aria-label="1 star" class="rating__label" for="rating3-1">
+            <i class="rating__icon rating__icon--star fa fa-star"></i>
+          </label>
+            <input class="rating__input" name="rating3" id="rating3-1" value="1" type="radio">
+          <label aria-label="2 stars" class="rating__label" for="rating3-2">
+            <i class="rating__icon rating__icon--star fa fa-star"></i>
+          </label>
+            <input class="rating__input" name="rating3" id="rating3-2" value="2" type="radio">
+          <label aria-label="3 stars" class="rating__label" for="rating3-3">
+            <i class="rating__icon rating__icon--star fa fa-star"></i>
+          </label>
+            <input class="rating__input" name="rating3" id="rating3-3" value="3" type="radio">
+          <label aria-label="4 stars" class="rating__label" for="rating3-4">
+            <i class="rating__icon rating__icon--star fa fa-star"></i>
+          </label>
+            <input class="rating__input" name="rating3" id="rating3-4" value="4" type="radio">
+          <label aria-label="5 stars" class="rating__label" for="rating3-5">
+            <i class="rating__icon rating__icon--star fa fa-star"></i>
+          </label>
+            <input class="rating__input" name="rating3" id="rating3-5" value="5" type="radio">
+        </div>
 
-        <label for="rating">Rating:</label>
-        <select name="rating" id="rating" required>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        </select>
-      
-
-        <button id="cancel-btn" class="btn item"><i class="fas fa-times"></i></button>
         <button id="create-btn" class="btn item" type="submit"><i class="fas fa-plus"></i></button>
       </form>
-      <hr>
-    </section>`;
+    </section>
+    <hr />`;
 };
 
 const generateBookmarkList = function (bookmarks) {
@@ -65,31 +79,37 @@ const generateBookmarkList = function (bookmarks) {
     <section id="bookmark-section" class="group bookmark-group" data-item-id="${
       bookmark.id
     }">
-      <div class="item">
-        <h2 class="bookmark-el" id="${bookmark.id}">
-          <img src="${bookmark.url}/favicon.ico" id="favicon">
-          ${bookmark.title} 
-          <div id="rating">
-            ${getRatings(bookmark.rating)}
-          </div>
-        </h2>
+      <img src="${bookmark.url}/favicon.ico" id="favicon">
+      <h2 class="bookmark-el item" id="${bookmark.id}">
+        ${bookmark.title}
+      </h2> 
+      <div id="rating" class="item">
+        ${getRatings(bookmark.rating)}
       </div>
-      <div class="btn-wrapper">
-        <button id="delete-btn" class="btn"><i class="fas fa-trash"></i></button>
-        <button class="btn exp-col-btn"><i class="fas fa-caret-down ${
-          bookmark.expand === false ? "fa-rotate-270" : ""
-        }"></i></button>
+      <div class="btn-wrapper item">
+        <button id="delete-btn" class="btn">
+          <i class="fas fa-trash"></i>
+        </button>
+        <button class="btn exp-col-btn">
+          <i class="fas fa-caret-down 
+          ${bookmark.expand === false ? "fa-rotate-270" : ""}"></i>
+        </button>
       </div>
-      <div class="expanded-bookmark item ${
-        bookmark.expand === false ? "hidden" : ""
-      }">
-        <p class="bookmark-url">
+    </section>
+    <hr class="${bookmark.expand === true ? "hidden" : ""}"/>
+
+    <div class="expanded-bookmark ${bookmark.expand === false ? "hidden" : ""}">
+      <div class="group">
+        <button class="bookmark-url item btn">
           <a href="${bookmark.url}" id="${bookmark.id}">
-            <i class="fas fa-link"></i></a></p>
-        <p class="bookmark-desc" id="${bookmark.id}">
-          ${bookmark.desc}</p>
+            <i class="fas fa-link"></i></a>
+        </button>
+        <p class="bookmark-desc item-triple" id="${bookmark.id}">
+          ${bookmark.desc}
+        </p>
       </div>
-    </section>`;
+      <hr />
+    </div>`;
   });
   return `
     <div class="bookmark-wrapper">

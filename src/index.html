@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Bookmarks</title>
+    <title>Favorites</title>
     <link rel="shortcut icon" href="#" />
     <link
       href="https://fonts.googleapis.com/css?family=Roboto"
@@ -10,24 +10,25 @@
   </head>
 
   <body>
-    <header>
-      <h1>My Bookmarks</h1>
-      <section id="main-section" class="btn-wrapper item">
+    <header class="mint">
+      <h1>Favorites</h1>
+      <section id="header-section" class="group">
         <div class="btn-wrapper item">
-          <button id="filter-select" class="btn">
-            Filter <i class="fas fa-sort-amount-down"></i>
+          <div id="filter-select" class="btn mintBG custom-select">
+            Filter by Ratings&nbsp;<i class="fas fa-sort-amount-down"></i>
             <select id="filter-by-rating" name="filter-by-rating">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
+              <option value="0">Filter</option>
+              <option value="1">1+ Stars</option>
+              <option value="2">2+ Stars</option>
+              <option value="3">3+ Stars</option>
+              <option value="4">4+ Stars</option>
+              <option value="5">5 Stars</option>
             </select>
-          </button>
+          </div>
         </div>
         <div class="btn-wrapper item">
-          <button id="add-btn" class="btn">
-            Add <i class="fas fa-bookmark"></i>
+          <button id="add-btn" class="btn mintBG">
+            Add a Bookmark</i>
           </button>
         </div>
       </section>

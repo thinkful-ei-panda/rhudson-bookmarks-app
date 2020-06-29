@@ -1,13 +1,10 @@
 const bookmarks = [];
 let adding = false;
-// let edit = false;
-// let editBookmark;
 let error = null;
 let filter = 0;
 let expand = false;
 
 const findById = function (id) {
-  console.log("inside state.js" + id);
   return this.bookmarks.find((bookmark) => bookmark.id === id);
 };
 
@@ -53,7 +50,6 @@ const setError = function (error) {
 export default {
   bookmarks,
   adding,
-  // edit,
   error,
   filter,
   expand,
