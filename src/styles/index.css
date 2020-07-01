@@ -52,6 +52,7 @@ body {
   text-align: center;
   color: #f2f2f2;
   align-content: space-between;
+  display: flex;
 }
 .item-double {
   flex: 2;
@@ -59,6 +60,7 @@ body {
   text-align: center;
   color: #f2f2f2;
   line-height: 1.25em;
+  display: flex;
 }
 .item-triple {
   flex: 3;
@@ -66,6 +68,7 @@ body {
   text-align: center;
   color: #f2f2f2;
   line-height: 1.25em;
+  display: flex;
 }
 
 /* HEADER STYLES */
@@ -81,14 +84,21 @@ header h1 {
 .btn-wrapper {
   display: inline-flex;
 }
+.vertical {
+  flex-direction: column;
+  align-content: space-between;
+  vertical-align: middle;
+  align-items: flex-end;
+}
 .btn {
-  color: white;
+  color: #66cdaa;
   font-family: "Roboto", sans-serif;
   font-size: 1em;
   width: 15vw;
   text-decoration: none;
   height: 35px;
-  margin: 0 8px;
+  margin: 5px;
+  padding: 5px;
   border: none;
   border-radius: 5px;
   display: flex;
@@ -96,22 +106,31 @@ header h1 {
   justify-content: center;
   cursor: pointer;
   transition: all 400ms;
-  background: #66cdaa;
-  box-shadow: 2px 2px 5px #00282b, -2px -2px 2px #9bd2bf;
+  background: transparent;
+  box-shadow: 2px 2px 5px #1f1f1f, -2px -2px 2px #808080;
 }
-.btn {
-  padding: 5px;
-}
-
 .btn:hover {
-  box-shadow: inset 2px 2px 5px #00282b, inset -2px -2px 5px #9bd2bf;
+  box-shadow: inset 2px 2px 5px #1f1f1f, inset -2px -2px 5px #808080;
   transform: translatey(2px);
   cursor: pointer;
 }
 .btn i {
   font-size: 6vw;
   transition: all 400ms;
-  color: black;
+}
+.btn-secondary {
+  color: #66cdaa !important;
+  font-size: 1.5em;
+  width: 5vw;
+  display: flex;
+  background: transparent;
+  box-shadow: 2px 2px 5px #1f1f1f, -2px -2px 2px #808080;
+}
+.btn-secondary:hover {
+  box-shadow: inset 2px 2px 5px #1f1f1f, inset -2px -2px 5px #808080;
+}
+.btn a {
+  color: #66cdaa !important;
 }
 
 /* BOOKMARK LIST */
@@ -119,9 +138,13 @@ header h1 {
   align-content: space-between;
   width: 100%;
 }
+#bookmark-section .item-double {
+  margin: auto 5% auto 0;
+}
 #favicon {
   width: 50px;
   height: 50px;
+  margin-right: 3%;
 }
 #bookmark-list-item {
   width: 250px;
@@ -147,6 +170,16 @@ header h1 {
 }
 
 /* EXPANDED */
+.flat-icon {
+  color: #66cdaa;
+  font-family: "Roboto", sans-serif;
+  font-size: 5vw;
+  width: 5vw;
+  /* margin-right: 5%; */
+  padding: 5px;
+  display: flex;
+  cursor: pointer;
+}
 .expanded-bookmark {
   margin: 5% auto;
   width: 100%;
@@ -154,13 +187,11 @@ header h1 {
 .expanded-bookmark .group {
   width: 100%;
 }
-.expanded-bookmark button {
-  width: 5vw !important;
-}
 .expanded-bookmark button a {
   color: white;
 }
 .expanded-bookmark p {
+  font-size: 1.5em;
   width: 100%;
   text-align: left;
 }
@@ -170,7 +201,11 @@ header h1 {
 
 /* RATINGS */
 #rating {
+  display: flex;
   font-size: 2em;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
 }
 .fa-star {
   color: gold;
@@ -255,6 +290,7 @@ form h3 {
 .input-group {
   width: 20vw;
   height: 60px;
+  flex-direction: column;
 }
 input[type="text"],
 input[type="url"] {

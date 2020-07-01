@@ -25,7 +25,7 @@ const getRatings = function (value) {
 const generateAddHTML = function () {
   return `<section id='add-section' class='bookmark-group'>
       <form id="add-bookmark-form" class="form group">
-        <h3 class="item">Add <i class="fas fa-bookmark"></i></h3>
+        <h3 class="item flat-icon"><i class="fas fa-bookmark"></i></h3>
         <div class="error-container"></div>
         <div class="input-group item">
           <label for="title">
@@ -37,7 +37,7 @@ const generateAddHTML = function () {
           </label>
         </div>
         <label for="description" class="item">
-          <input type="text" name="bookmark-description" id="description" value="" placeholder="" size="40">
+          <input type="text" name="bookmark-description" id="description" value="" placeholder="Optional notes" size="40">
         </label>
 
         <div id="rating" class="rating-group item" name="rating">
@@ -65,7 +65,7 @@ const generateAddHTML = function () {
             <input class="rating__input" name="rating3" id="rating3-5" value="5" type="radio">
         </div>
 
-        <button id="create-btn" class="btn item" type="submit"><i class="fas fa-plus"></i></button>
+        <button id="create-btn" class="btn btn-secondary item" type="submit"><i class="fas fa-plus"></i></button>
       </form>
     </section>
     <hr />`;
@@ -79,18 +79,19 @@ const generateBookmarkList = function (bookmarks) {
     <section id="bookmark-section" class="group bookmark-group" data-item-id="${
       bookmark.id
     }">
-      <img src="${bookmark.url}/favicon.ico" id="favicon">
-      <h2 class="bookmark-el item" id="${bookmark.id}">
+      <h3 class="flat-icon item"><i class="fas fa-bookmark"></i></h3>      
+      <h2 class="bookmark-el item-double" id="${bookmark.id}">
+        <img src="${bookmark.url}/favicon.ico" id="favicon">
         ${bookmark.title}
       </h2> 
-      <div id="rating" class="item">
+      <div id="rating" class="item-double">
         ${getRatings(bookmark.rating)}
       </div>
-      <div class="btn-wrapper item">
-        <button id="delete-btn" class="btn">
+      <div class="vertical btn-wrapper item">
+        <button id="delete-btn" class="btn btn-secondary">
           <i class="fas fa-trash"></i>
         </button>
-        <button class="btn exp-col-btn">
+        <button class="btn exp-col-btn btn-secondary">
           <i class="fas fa-caret-down 
           ${bookmark.expand === false ? "fa-rotate-270" : ""}"></i>
         </button>
@@ -98,18 +99,20 @@ const generateBookmarkList = function (bookmarks) {
     </section>
     <hr class="${bookmark.expand === true ? "hidden" : ""}"/>
 
-    <div class="expanded-bookmark ${bookmark.expand === false ? "hidden" : ""}">
-      <div class="group">
-        <button class="bookmark-url item btn">
-          <a href="${bookmark.url}" id="${bookmark.id}">
-            <i class="fas fa-link"></i></a>
-        </button>
+    <div class="expanded-bookmark group ${
+      bookmark.expand === false ? "hidden" : ""
+    }">
+      <div class="item">
         <p class="bookmark-desc item-triple" id="${bookmark.id}">
           ${bookmark.desc}
         </p>
+        <button class="bookmark-url btn btn-secondary">
+          <a href="${bookmark.url}" id="${bookmark.id}" target="_blank">
+            <i class="fas fa-link"></i></a>
+        </button>        
       </div>
-      <hr />
-    </div>`;
+    </div>
+    <hr class="${bookmark.expand === false ? "hidden" : ""}"/>`;
   });
   return `
     <div class="bookmark-wrapper">
