@@ -96,7 +96,7 @@ header h1 {
   font-size: 1em;
   width: 15vw;
   text-decoration: none;
-  height: 35px;
+  height: 50px;
   margin: 5px;
   padding: 5px;
   border: none;
@@ -141,6 +141,12 @@ header h1 {
 #bookmark-section .item-double {
   margin: auto 5% auto 0;
 }
+#bookmark-section h2 {
+  text-align: left;
+}
+#bookmark-section img {
+  color: transparent;
+}
 #favicon {
   width: 50px;
   height: 50px;
@@ -173,12 +179,14 @@ header h1 {
 .flat-icon {
   color: #66cdaa;
   font-family: "Roboto", sans-serif;
-  font-size: 5vw;
   width: 5vw;
   /* margin-right: 5%; */
   padding: 5px;
   display: flex;
   cursor: pointer;
+}
+.flat-icon svg {
+  font-size: 3em;
 }
 .expanded-bookmark {
   margin: 5% auto;
@@ -201,17 +209,20 @@ header h1 {
 
 /* RATINGS */
 #rating {
-  display: flex;
+  display: inline-block;
   font-size: 2em;
-  flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
+  white-space: nowrap;
 }
-.fa-star {
-  color: gold;
+/* #rating .rating__label {
+  font-size: 1em !important;
+} */
+#rating .fa-star {
+  color: goldenrod;
 }
 
-/* CUSTOM FILTER */
+/* STAR RATING */
 select {
   position: absolute;
   opacity: 0;
@@ -226,6 +237,9 @@ select:before {
 select option[value="0"] {
   display: none;
 }
+
+
+
 
 .rating-group {
   display: inline-flex;
@@ -244,25 +258,30 @@ select option[value="0"] {
 .rating__label {
   cursor: pointer;
   padding: 0 0.1em;
-  font-size: 1.75rem;
 }
-.rating__icon--star {
-  color: goldenrod;
+.rating {
+	direction: rtl;
+	unicode-bidi: bidi-override;
+  margin: auto 1em;
+  font-size: 1.5em;
+	color: #888;
 }
-.rating__input:checked ~ .rating__label .rating__icon--star {
-  color: #888888;
+.rating input {
+	display: none;
 }
-.rating-group:hover .rating__label .rating__icon--star {
-  color: goldenrod;
+.rating label:hover,
+.rating label:hover ~ label,
+.rating input:checked + label,
+.rating input:checked + label ~ label {
+	color: goldenrod;
 }
-.rating__input:hover ~ .rating__label .rating__icon--star {
-  color: #888888;
-}
+
 
 /* ERRORS */
 .error-container {
   color: red;
   font-weight: bold;
+  text-align: center;
 }
 
 .error-container * {
@@ -273,32 +292,43 @@ select option[value="0"] {
   margin-right: 0.5rem;
 }
 
-/* ADD FORM */
-#add-section {
-  display: flex;
-}
 #add-section form {
+  display: flex;
   width: 100%;
   margin: 0 auto;
   align-content: space-between;
 }
-form h3 {
-  width: 5vw;
-  color: mediumaquamarine !important;
-  font-size: 2em;
+#add-rating {
+  white-space: nowrap;
+  font-size: 1.25em !important;
 }
 .input-group {
-  width: 20vw;
-  height: 60px;
+  height: 88px;
   flex-direction: column;
+}
+.input-group label[for="title"],
+.input-group label[for="url"] {
+  height: 43px;
+}
+.input-group label[for="description"] {
+  height: 100%;
 }
 input[type="text"],
 input[type="url"] {
   padding: 5px;
   margin: auto 1%;
+  width: 100%;
+  height: 100%;
 }
-label input[id="description"] {
-  height: 58px;
+textarea {
+  padding: 5px;
+  margin: auto 1%;
+  width: 100%;
+  height: 100%;
+  font-family: "Roboto", sans-serif !important;
+}
+fieldset {
+  border: none;
 }
 #create-btn {
   margin: auto 1%;

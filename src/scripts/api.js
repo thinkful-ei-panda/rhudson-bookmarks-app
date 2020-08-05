@@ -3,17 +3,13 @@ const BASE_URL = "https://thinkful-list-api.herokuapp.com/rebecca/bookmarks/";
 const listAPIFetch = function (...args) {
   let error;
   return fetch(...args)
-    .then((response) => {
-      if (!response.ok) {
+    .then((res) => {
+      if (!res.ok) {
         error = {
-          code: response.status,
+          code: res.status
         };
-        if (!response.headers.get("content-type").includes("json")) {
-          error.message = response.statusText;
-          return Promise.reject(error);
-        }
-      }
-      return response.json();
+      }    
+      return res.json();
     })
     .then((data) => {
       if (error) {
@@ -21,28 +17,28 @@ const listAPIFetch = function (...args) {
         return Promise.reject(error);
       }
       return data;
-    });
+    })
 };
 
 const GET = function () {
   return listAPIFetch(`${BASE_URL}`);
 };
 
-const POST = function (jsonStringifiedFormData) {
-  console.log("API firing");
-  const newData = JSON.stringify(jsonStringifiedFormData);
+const POST = function (bookmark) {
+  
   return listAPIFetch(`${BASE_URL}`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
+    'method': 'POST',
+    'headers': {
+      'Content-Type': 'application/json',
     },
-    body: newData,
+    'body': JSON.stringify(bookmark)
   });
 };
 
 const deleteAPI = function (bookmarkID) {
   return listAPIFetch(`${BASE_URL}${bookmarkID}`, {
-    method: "DELETE",
+    'method': 'DELETE',
+    'headers': { 'Content-Type': 'application/json' }
   });
 };
 

@@ -14,8 +14,9 @@
       <h1>Favorites</h1>
       <section id="header-section" class="group">
         <div class="btn-wrapper item">
-          <div id="filter-select" class="btn mintBG custom-select">
-            Filter by Ratings&nbsp;<i class="fas fa-sort-amount-down"></i>
+          <form id="filter-select" class="btn mintBG custom-select">
+            <label for="filter-by-rating">Filter by Ratings&nbsp;<i class="fas fa-sort-amount-down"></i>
+            </label>            
             <select id="filter-by-rating" name="filter-by-rating">
               <option value="0">Filter</option>
               <option value="1">1+ Stars</option>
@@ -24,7 +25,7 @@
               <option value="4">4+ Stars</option>
               <option value="5">5 Stars</option>
             </select>
-          </div>
+          </form>
         </div>
         <div class="btn-wrapper item">
           <button id="add-btn" class="btn mintBG">
@@ -43,5 +44,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/js/all.min.js"></script>
+    
   </body>
 </html>

@@ -26,12 +26,6 @@ const setExpand = function () {
   });
 };
 
-const editBookmark = function (id, editedBookmark) {
-  this.bookmarks = this.bookmarks.map((bookmark) =>
-    bookmark.id === id ? editedBookmark : bookmark
-  );
-};
-
 const toggleProperty = function (object, property) {
   object[property] = !object[property];
   return object;
@@ -57,7 +51,6 @@ export default {
   addBookmark,
   toggleProperty,
   setExpand,
-  editBookmark,
   deleteBookmark,
   setError,
   loadBookmarks,
