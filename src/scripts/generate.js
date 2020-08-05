@@ -27,37 +27,31 @@ const generateAddHTML = function () {
         <div class="item flat-icon"><i class="fas fa-bookmark" role="img"></i></div>
         
         <div class="input-group item-triple">
-          <label for="title" title="Bookmark Title">
-            <input type="text" name="bookmark-title" id="title" value="" placeholder="Title" required>
-          </label>
-
-          <label for="url" title="Bookmark URL">
-            <input type="url" name="bookmark-url" id="url" value="" placeholder="https://www.example.com" required>
-          </label>
+          
+          <input type="text" name="bookmark-title" id="title" value="" placeholder="Title" required aria-label="Title of Bookmark">
+          <input type="url" name="bookmark-url" id="url" value="" placeholder="https://www.example.com" required aria-label="Bookmark URL">
         </div>
 
         <div class="input-group item-triple">
-          <label for="description" title="Bookmark Notes">
-            <textarea type="text" name="bookmark-description" id="description" value="" placeholder="Optional notes" rows="4"></textarea>
-          </label>
+          <textarea type="text" name="bookmark-description" id="description" value="" placeholder="Optional notes" rows="4" aria-label="Bookmark Notes - Optional"></textarea>
         </div>
 
         <div class="rating item" required>
           <input id="rating-5" type="radio" name="rating" value="5"/>
             <label for="rating-5">
-              <i class="fas fa-star"></i></label>
+              <i class="fas fa-star"></i><span class="label-content">5 star rating</span></label>
           <input id="rating-4" type="radio" name="rating" value="4"/>
             <label for="rating-4">
-              <i class="fas fa-star"></i></label>
+              <i class="fas fa-star"></i><span class="label-content">4 star rating</span></label>
           <input id="rating-3" type="radio" name="rating" value="3"/>
             <label for="rating-3">
-              <i class="fas fa-star"></i></label>
+              <i class="fas fa-star"></i><span class="label-content">3 star rating</span></label>
           <input id="rating-2" type="radio" name="rating" value="2"/>
             <label for="rating-2">
-              <i class="fas fa-star"></i></label>
+              <i class="fas fa-star"></i><span class="label-content">2 star rating</span></label>
           <input id="rating-1" type="radio" name="rating" value="1"/>
             <label for="rating-1">
-              <i class="fas fa-star"></i></label>
+              <i class="fas fa-star"></i><span class="label-content">1 star rating</span></label>
         </div>
 
         <button id="create-btn" class="btn btn-secondary item" type="submit" aria-label="Add Bookmark"><i class="fas fa-plus"></i></button>

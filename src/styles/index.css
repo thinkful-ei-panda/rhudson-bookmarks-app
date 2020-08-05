@@ -276,6 +276,10 @@ select option[value="0"] {
 	color: goldenrod;
 }
 
+.label-content {
+  display: none;
+}
+
 
 /* ERRORS */
 .error-container {
