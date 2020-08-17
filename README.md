@@ -33,13 +33,13 @@ I can select from a dropdown (a "select element") a "minimum rating" to filter t
 Link to live app:
 **https://thinkful-ei-panda.github.io/rhudson-bookmarks-app/**
 
-![mobile-425](../extras/mobile-425.png)
+![mobile-425](/extras/mobile-425.png)
 
-![mobile-637](../extras/mobile-637.png)
+![mobile-637](/extras/mobile-637.png)
 
-![tablet-768](../extras/tablet-768.png)
+![tablet-768](/extras/tablet-768.png)
 
-![laptop-desktop-1024](../extras/laptop-desktop-1024.png)
+![laptop-desktop-1024](/extras/laptop-desktop-1024.png)
 
 
 
