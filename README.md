@@ -13,11 +13,11 @@ As a user:
 I can add bookmarks to my bookmark list. 
 
 Bookmarks contain:
-- bullet title
-- bullet url link
-- bullet description
-- bullet rating (1-5)
-- bullet I can see a list of my bookmarks when I first open the app
+- title
+- url link
+- description
+- rating (1-5)
+- I can see a list of my bookmarks when I first open the app
 
 All bookmarks in the list default to a "condensed" view showing only title and rating
 I can click on a bookmark to display the "detailed" view
@@ -30,13 +30,13 @@ I receive appropriate feedback when I cannot submit a bookmark
 Check all validations in the API documentation (e.g. title and url field required)
 I can select from a dropdown (a <select> element) a "minimum rating" to filter the list by all bookmarks rated at or above the chosen selection.
 
-![Live Bookmarks App](https://thinkful-ei-panda.github.io/rhudson-bookmarks-app/)
+https://thinkful-ei-panda.github.io/rhudson-bookmarks-app/
 
-![Mobile 425px](/extras/mobile-425.png)
+https://github.com/thinkful-ei-panda/rhudson-bookmarks-app/blob/master/extras/mobile-425.png
 
-![Mobile 637px](/extras/mobile-637.png)
+https://github.com/thinkful-ei-panda/rhudson-bookmarks-app/blob/master/extras/mobile-637.png
 
-![Tablet 768px](/extras/tablet-768.png)
+https://github.com/thinkful-ei-panda/rhudson-bookmarks-app/blob/master/extras/tablet-768.png
 
-![Laptop/ Desktop 1024px](/extras/laptop-desktop-1024.png)
+https://github.com/thinkful-ei-panda/rhudson-bookmarks-app/blob/master/extras/laptop-desktop-1024.png)
 
