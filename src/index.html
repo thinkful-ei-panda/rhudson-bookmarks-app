@@ -2,7 +2,8 @@
 <html lang="en">
   <head>
     <title>Favorites</title>
-    <link rel="shortcut icon" href="#" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link
       href="https://fonts.googleapis.com/css?family=Roboto"
       rel="stylesheet"
@@ -11,26 +12,27 @@
 
   <body>
     <header class="mint">
-      <h1>Favorites</h1>
       <section id="header-section" class="group">
-        <div class="btn-wrapper item">
-          <form id="filter-select" class="btn mintBG custom-select">
-            <label for="filter-by-rating">Filter by Ratings&nbsp;<i class="fas fa-sort-amount-down"></i>
-            </label>            
-            <select id="filter-by-rating" name="filter-by-rating">
-              <option value="0">Filter</option>
-              <option value="1">1+ Stars</option>
-              <option value="2">2+ Stars</option>
-              <option value="3">3+ Stars</option>
-              <option value="4">4+ Stars</option>
-              <option value="5">5 Stars</option>
+        <h1>Favorites</h1>
+        <div class="header-buttons btn-wrapper item">
+          <form id="filter-select" class="btn-wrapper">
+            <label for="filter-by-rating" class="hidden">Filter by Rating
+            </label>
+            <span class="icon"></span>        
+            <select id="filter-by-rating" name="filter-by-rating" class="btn" aria-label="Filter by Rating">
+              <option value="" selected tabindex="1">Filter by Rating</option>
+              <option value="1" tabindex="2">1+ Stars</option>
+              <option value="2" tabindex="3">2+ Stars</option>
+              <option value="3" tabindex="4">3+ Stars</option>
+              <option value="4" tabindex="5">4+ Stars</option>
+              <option value="5" tabindex="6">5 Stars</option>
             </select>
           </form>
-        </div>
-        <div class="btn-wrapper item">
-          <button id="add-btn" class="btn mintBG">
-            Add a Bookmark</i>
-          </button>
+          <div class="add-btn btn-wrapper">
+            <button id="add-btn" class="btn">
+              Add a Bookmark
+            </button>
+          </div>
         </div>
       </section>
     </header>

@@ -6,9 +6,9 @@ html {
 }
 body {
   font-family: "Roboto", sans-serif !important;
-  font-size: 1em;
-  width: 85%;
+  font-size: 16px;
   margin: 0 auto;
+  padding: 0 5%;
 }
 
 /* CSS SHORTCUTS */
@@ -34,6 +34,7 @@ body {
   display: none !important;
 }
 
+
 /* GLOBAL STYLES */
 .container {
   max-width: 600px;
@@ -41,10 +42,10 @@ body {
 }
 .group {
   max-width: 1440px;
-  width: auto;
+  width: 100%;
   margin: 0 auto;
   display: inline-flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 .item {
   flex: 1;
@@ -52,14 +53,13 @@ body {
   text-align: center;
   color: #f2f2f2;
   align-content: space-between;
-  display: flex;
 }
 .item-double {
   flex: 2;
   margin: 10px;
   text-align: center;
   color: #f2f2f2;
-  line-height: 1.25em;
+  line-height: 20px;
   display: flex;
 }
 .item-triple {
@@ -67,38 +67,36 @@ body {
   margin: 10px;
   text-align: center;
   color: #f2f2f2;
-  line-height: 1.25em;
+  line-height: 20px;
   display: flex;
 }
+
+/****** ALL MOBILE STYLES BELOW ARE UNDER 500px ******/
 
 /* HEADER STYLES */
 header {
   text-align: center;
 }
 header h1 {
-  font-size: 6em;
+  font-size: 45px;
   text-align: center;
 }
 
 /* BUTTON STYLES */
 .btn-wrapper {
   display: inline-flex;
-}
-.vertical {
-  flex-direction: column;
-  align-content: space-between;
-  vertical-align: middle;
-  align-items: flex-end;
+  width: 100%;
+  margin: auto;
 }
 .btn {
+  position: relative;
   color: #66cdaa;
   font-family: "Roboto", sans-serif;
-  font-size: 1em;
-  width: 15vw;
+  font-size: 20px;
+  width: 100%;
   text-decoration: none;
-  height: 50px;
   margin: 5px;
-  padding: 5px;
+  padding: 10px;
   border: none;
   border-radius: 5px;
   display: flex;
@@ -119,9 +117,8 @@ header h1 {
   transition: all 400ms;
 }
 .btn-secondary {
-  color: #66cdaa !important;
-  font-size: 1.5em;
-  width: 5vw;
+  color: #66cdaa;
+  font-size: 24px;
   display: flex;
   background: transparent;
   box-shadow: 2px 2px 5px #1f1f1f, -2px -2px 2px #808080;
@@ -134,28 +131,27 @@ header h1 {
 }
 
 /* BOOKMARK LIST */
-#bookmark-section {
+.bookmark-group {
   align-content: space-between;
+  align-items: center;
   width: 100%;
 }
-#bookmark-section .item-double {
-  margin: auto 5% auto 0;
+.bookmark-group .item-double {
+  margin: 3% auto;
 }
-#bookmark-section h2 {
+.bookmark-group h2 {
   text-align: left;
+  align-items: center;
+  line-height: 30px;
 }
-#bookmark-section img {
+.bookmark-group img {
   color: transparent;
 }
-#favicon {
+.favicon {
   width: 50px;
   height: 50px;
   margin-right: 3%;
 }
-#bookmark-list-item {
-  width: 250px;
-}
-
 .bookmark-list {
   list-style: none;
   padding-left: 0;
@@ -180,122 +176,125 @@ header h1 {
   color: #66cdaa;
   font-family: "Roboto", sans-serif;
   width: 5vw;
-  /* margin-right: 5%; */
   padding: 5px;
-  display: flex;
   cursor: pointer;
+  display: none;
+  text-align: center;
 }
 .flat-icon svg {
-  font-size: 3em;
+  font-size: 48px;
 }
 .expanded-bookmark {
-  margin: 5% auto;
+  margin: 3% auto 1% auto;
   width: 100%;
 }
 .expanded-bookmark .group {
   width: 100%;
 }
-.expanded-bookmark button a {
-  color: white;
+
+.expanded-bookmark .btn-secondary {
+  text-align: right;
 }
 .expanded-bookmark p {
-  font-size: 1.5em;
   width: 100%;
   text-align: left;
+  line-height: 20px;
+  padding: 10px;
 }
 .expanded-bookmark hr {
   width: 100%;
 }
 
+/*  FILTER BY RATINGS */
+#filter-select {
+  position: relative;
+}
+#filter-select label::after {
+  font-family: Arial,  Calibri, Tahoma, Verdana !important;
+  content: "";
+  position: absolute;
+}
+
+#filter-select select {
+  opacity: 1;
+  color: #66cdaa;
+  text-align-last: center;
+  text-indent: 5px;
+  appearance: none;
+}
+#filter-select select:hover {
+  box-shadow: inset 2px 2px 5px #1f1f1f, inset -2px -2px 5px #808080;
+  transform: translatey(2px);
+  cursor: pointer;
+}
+
+
 /* RATINGS */
-#rating {
-  display: inline-block;
-  font-size: 2em;
+.star-rating {
+  display: flex;
+  font-size: 32px;
   align-items: center;
   justify-content: center;
   white-space: nowrap;
 }
-/* #rating .rating__label {
-  font-size: 1em !important;
-} */
-#rating .fa-star {
+.star-rating .fa-star {
   color: goldenrod;
 }
 
-/* STAR RATING */
+/* ADD STAR RATING */
 select {
   position: absolute;
   opacity: 0;
-  width: 10vw;
   cursor: pointer;
+  left: 0;
+  right: 0;
+  width: 100%;
+  top: 0;
+  bottom: 0;
 }
 
 select:before {
   position: relative;
 }
 
-select option[value="0"] {
-  display: none;
-}
-
-
-
-
 .rating-group {
   display: inline-flex;
   margin: auto 1%;
 }
-.rating__icon {
-  pointer-events: none;
-}
-.rating__input {
-  position: absolute !important;
-  left: -9999px !important;
-}
-.rating__input--none {
-  display: none;
-}
-.rating__label {
-  cursor: pointer;
-  padding: 0 0.1em;
-}
 .rating {
 	direction: rtl;
 	unicode-bidi: bidi-override;
-  margin: auto 1em;
-  font-size: 1.5em;
-	color: #888;
+  margin: 3% auto;
+  font-size: 36px;
+  color: #888;
+  position: relative;
 }
 .rating input {
-	display: none;
+	opacity: 0;
 }
 .rating label:hover,
 .rating label:hover ~ label,
 .rating input:checked + label,
-.rating input:checked + label ~ label {
+.rating input:checked + label ~ label,
+.rating input:focus + label {
 	color: goldenrod;
 }
-
 .label-content {
   display: none;
 }
 
-
 /* ERRORS */
-.error-container {
+.error {
   color: red;
-  font-weight: bold;
   text-align: center;
+  letter-spacing: 1.25px;
 }
-
-.error-container * {
+.error * {
   display: inline-block;
 }
-
 #cancel-error {
   margin-right: 0.5rem;
 }
-
 #add-section form {
   display: flex;
   width: 100%;
@@ -320,13 +319,17 @@ select option[value="0"] {
 input[type="text"],
 input[type="url"] {
   padding: 5px;
-  margin: auto 1%;
+  /* margin: auto; */
   width: 100%;
   height: 100%;
 }
+input[type="radio" i] {
+  position: absolute;
+  left: 35px;
+}
 textarea {
   padding: 5px;
-  margin: auto 1%;
+  margin: auto;
   width: 100%;
   height: 100%;
   font-family: "Roboto", sans-serif !important;
@@ -334,22 +337,49 @@ textarea {
 fieldset {
   border: none;
 }
-#create-btn {
-  margin: auto 1%;
+
+.header-buttons .filler {
+  display: none;
+}
+.header-buttons {
+  flex-direction: column;
 }
 
-@media screen and (min-width: 1024px) {
-  body {
+
+
+/****** ALL LARGE MOBILE STYLES FROM 500px - 768px ******/
+@media screen and (min-width: 500px) {
+  .content-wrapper {
+    display: inline-flex;
+    width: 100%;
+    padding: 0 5px;
+  }
+  .star-rating {
+    justify-content: flex-end;
+  }
+}
+/****** ALL TABLET STYLES FROM 769px - 1024px ******/
+@media screen and (min-width: 769px) {
+  .header-buttons {
+    flex-direction: row;
+  }
+}
+/****** ALL LAPTOP STYLES FROM 1025px - 1438px ******/
+@media screen and (min-width: 1025px) {
+  header h1 {
+    font-size: 64px;
+  }
+  .content-wrapper, .btn-wrapper, .expanded-bookmark p {
     width: 75%;
   }
 }
-@media screen and (min-width: 1500px) {
-  body {
-    width: 60%;
-  }
-}
-@media screen and (min-width: 2400px) {
-  body {
+/****** ALL LARGE LAPTOP STYLES FROM 1439px - 1600px ******/
+@media screen and (min-width: 1439px) and (max-width: 1600px) {
+  .content-wrapper, .btn-wrapper, .expanded-bookmark p {
     width: 50%;
   }
+  hr {
+    width: 75%;
+  }
 }
+

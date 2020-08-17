@@ -3,7 +3,7 @@ import state from "./state";
 
 const mainHTMLGenerator = function (bookmarks) {
   if (state.adding) {
-    $("#add-btn").text("Cancel");
+    $("#add-btn").text("Cancel Bookmark");
     return generateAddHTML();
   } else {
     $("#add-btn").text("Add a Bookmark");
@@ -19,10 +19,10 @@ const getRatings = function (value) {
   return bookmarkRating;
 };
 
-
 const generateAddHTML = function () {
   return `<section id='add-section' class='bookmark-group'>
-  <div class="error-container"></div>
+      <h2 class="hidden">Adding a Bookmark</h2>
+      <div class="add-error-container error"></div>
       <form id="add-bookmark-form" class="form group">
         <div class="item flat-icon"><i class="fas fa-bookmark" role="img"></i></div>
         
@@ -33,51 +33,61 @@ const generateAddHTML = function () {
         </div>
 
         <div class="input-group item-triple">
-          <textarea type="text" name="bookmark-description" id="description" value="" placeholder="Optional notes" rows="4" aria-label="Bookmark Notes - Optional"></textarea>
+          <textarea name="bookmark-description" id="description" placeholder="Optional notes" rows="4" aria-label="Bookmark Notes - Optional"></textarea>
         </div>
 
-        <div class="rating item" required>
-          <input id="rating-5" type="radio" name="rating" value="5"/>
-            <label for="rating-5">
+        <div class="rating item">
+          <input id="rating-5" type="radio" name="rating" value="5" required/>
+            <label for="rating-5" tabindex="1">
               <i class="fas fa-star"></i><span class="label-content">5 star rating</span></label>
-          <input id="rating-4" type="radio" name="rating" value="4"/>
-            <label for="rating-4">
+          <input id="rating-4" type="radio" name="rating" value="4" required/>
+            <label for="rating-4" tabindex="2">
               <i class="fas fa-star"></i><span class="label-content">4 star rating</span></label>
-          <input id="rating-3" type="radio" name="rating" value="3"/>
-            <label for="rating-3">
+          <input id="rating-3" type="radio" name="rating" value="3" required/>
+            <label for="rating-3" tabindex="3">
               <i class="fas fa-star"></i><span class="label-content">3 star rating</span></label>
-          <input id="rating-2" type="radio" name="rating" value="2"/>
-            <label for="rating-2">
+          <input id="rating-2" type="radio" name="rating" value="2" required/>
+            <label for="rating-2" tabindex="4">
               <i class="fas fa-star"></i><span class="label-content">2 star rating</span></label>
-          <input id="rating-1" type="radio" name="rating" value="1"/>
-            <label for="rating-1">
+          <input id="rating-1" type="radio" name="rating" value="1" required/>
+            <label for="rating-1" tabindex="5">
               <i class="fas fa-star"></i><span class="label-content">1 star rating</span></label>
         </div>
 
-        <button id="create-btn" class="btn btn-secondary item" type="submit" aria-label="Add Bookmark"><i class="fas fa-plus"></i></button>
+        <div class="btn-wrapper">
+          <button id="create-btn" class="btn btn-secondary item" type="submit" aria-label="Add Bookmark"><i class="fas fa-plus"></i></button>
+        </div>
       </form>
     </section>
     <hr />`;
 };
 
-
 const generateBookmarkList = function (bookmarks) {
   const bookmarksListElements = bookmarks.map((bookmark) => {
     return `
-    <section id="bookmark-section" class="group bookmark-group" data-item-id="${bookmark.id}">
-      <div class="item flat-icon"><i class="fas fa-bookmark"></i></div>  
-      <h2 class="bookmark-el item-double" id="${bookmark.id}">
-        <img src="${bookmark.url}/favicon.ico" id='favicon' alt='website favicon' aria-hidden='true'>
-        ${bookmark.title}
-      </h2> 
-      <div id="rating" class="item-double">
-        ${getRatings(bookmark.rating)}
+    <section id="bookmark-section-${
+      bookmark.id
+    }" class="group bookmark-group" data-item-id="${
+      bookmark.id
+    }">
+      <div class="delete-error-container error"></div>
+      <div class="content-wrapper item">
+        <div class="item flat-icon"><i class="fas fa-bookmark"></i></div>  
+        <h2 class="bookmark-el item-double">
+          <img src="${
+            bookmark.url
+          }/favicon.ico" class='favicon' alt='website favicon' aria-hidden='true'>
+          &nbsp;${bookmark.title}
+        </h2> 
+        <div id="rating-${bookmark.id}" class="star-rating item-double">
+          ${getRatings(bookmark.rating)}
+        </div>
       </div>
-      <div class="vertical btn-wrapper item">
-        <button id="delete-btn" class="btn btn-secondary" aria-label="Delete Bookmark" value="">
+      <div class="horizontal btn-wrapper item">
+        <button class="delete-btn btn btn-secondary" aria-label="Delete Bookmark" value="">
           <i class="fas fa-trash"></i>
         </button>
-        <button class="btn exp-col-btn btn-secondary" aria-label="Expand Bookmark" value="">
+        <button class="exp-col-btn btn btn-secondary" aria-label="Expand Bookmark" value="">
           <i class="fas fa-caret-down 
           ${bookmark.expand === false ? "fa-rotate-270" : ""}"></i>
         </button>
@@ -89,17 +99,16 @@ const generateBookmarkList = function (bookmarks) {
     <div class="expanded-bookmark group ${
       bookmark.expand === false ? "hidden" : ""
     }">
-      <div class="item">
-        <p class="bookmark-desc item-triple" id="${bookmark.id}">
+      
+      <p class="bookmark-desc item" id="bookmark-desc-${bookmark.id}">
           ${bookmark.desc}
-        </p>
-        <button class="bookmark-url btn btn-secondary" aria-label="Bookmark Link">
-          <a href="${bookmark.url}" id="${
-      bookmark.id
-    }" target="_blank" aria-label="link">
-            <i class="fas fa-link" role="image"></i></a>
-        </button>        
-      </div>
+      </p>
+      <div class="delete-error-container error"></div>
+      <div class="btn-wrapper">
+        <a href="${bookmark.url}" id="bookmark-btn-${bookmark.id}" class="btn" target="_blank" rel="noreferrer" aria-label="link">
+          <i class="fas fa-link"></i>&nbsp;to&nbsp;${bookmark.title}  
+        </a>
+      </div>  
     </div>
     <hr class="${bookmark.expand === false ? "hidden" : ""}"/>`;
   });
