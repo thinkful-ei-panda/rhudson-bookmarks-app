@@ -30,5 +30,13 @@ I receive appropriate feedback when I cannot submit a bookmark
 Check all validations in the API documentation (e.g. title and url field required)
 I can select from a dropdown (a <select> element) a "minimum rating" to filter the list by all bookmarks rated at or above the chosen selection.
 
-https://thinkful-ei-panda.github.io/rhudson-bookmarks-app/
+![Live Bookmarks App](https://thinkful-ei-panda.github.io/rhudson-bookmarks-app/)
+
+![Mobile 425px](/extras/mobile-425.png)
+
+![Mobile 637px](/extras/mobile-637.png)
+
+![Tablet 768px](/extras/tablet-768.png)
+
+![Laptop/ Desktop 1024px](/extras/laptop-desktop-1024.png)
 
