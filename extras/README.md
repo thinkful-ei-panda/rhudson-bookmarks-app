@@ -1,3 +1,0 @@
-# bookmarks-app-rebecca
-
-Live:
