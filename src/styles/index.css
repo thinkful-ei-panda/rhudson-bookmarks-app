@@ -295,6 +295,8 @@ select:before {
 #cancel-error {
   margin-right: 0.5rem;
 }
+
+/* FORM */
 #add-section form {
   display: flex;
   width: 100%;
@@ -309,6 +311,9 @@ select:before {
   height: 88px;
   flex-direction: column;
 }
+form .item-triple {
+  margin: 0 10px;
+}
 .input-group label[for="title"],
 .input-group label[for="url"] {
   height: 43px;
@@ -318,8 +323,8 @@ select:before {
 }
 input[type="text"],
 input[type="url"] {
-  padding: 5px;
-  /* margin: auto; */
+  padding: 1px 5px;
+  margin: 0.5% auto;
   width: 100%;
   height: 100%;
 }
@@ -328,8 +333,8 @@ input[type="radio" i] {
   left: 35px;
 }
 textarea {
-  padding: 5px;
-  margin: auto;
+  padding: 1px 5px;
+  margin: 0.5% auto;
   width: 100%;
   height: 100%;
   font-family: "Roboto", sans-serif !important;
@@ -369,8 +374,11 @@ fieldset {
   header h1 {
     font-size: 64px;
   }
-  .content-wrapper, .btn-wrapper, .expanded-bookmark p {
+  .content-wrapper, .btn-wrapper, .expanded-bookmark p, form .input-group {
     width: 75%;
+  }
+  form .item-triple {
+    margin: 0 auto;
   }
 }
 /****** ALL LARGE LAPTOP STYLES FROM 1439px - 1600px ******/
