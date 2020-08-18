@@ -47,7 +47,7 @@ const submitAddForm = function () {
 };
 
 const handleDeleteBtn = function () {
-  $(".bookmark-wrapper").on("click", ".delete-btn", (event) => {
+  $("main").on("click", ".delete-btn", (event) => {
     const bookmarkID = $(event.currentTarget)
       .closest(".bookmark-group")
       .data("item-id");
